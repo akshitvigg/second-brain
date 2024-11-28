@@ -1,5 +1,6 @@
 export interface Sizeprops {
   size: "sm" | "md" | "lg";
+  contentId?: string;
 }
 
 type SizeProps = "sm" | "md" | "lg";

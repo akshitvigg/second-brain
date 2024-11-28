@@ -1,6 +1,21 @@
 import { Sizeprops, sizeStyles } from "./iconStyles";
+import axios from "axios";
 
 export const Bin = (props: Sizeprops) => {
+  console.log("Deleting content with ID:", props.contentId);
+  const deleteContent = async () => {
+    try {
+      await axios.delete("http://localhost:3000/api/v1/content", {
+        params: { contentId: props.contentId },
+      });
+
+      alert("Content deleted successfully");
+    } catch (e) {
+      console.log(e);
+      alert("Failed to delete content");
+    }
+  };
+
   return (
     <>
       <svg
@@ -9,7 +24,10 @@ export const Bin = (props: Sizeprops) => {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className={sizeStyles.get(props.size)}
+        className={`${sizeStyles.get(
+          props.size
+        )} transition-all duration-300 ease-in-out hover:scale-110 active:scale-105 hover:cursor-pointer`}
+        onClick={deleteContent}
       >
         <path
           strokeLinecap="round"

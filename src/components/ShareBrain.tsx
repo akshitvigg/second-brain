@@ -20,14 +20,12 @@ export const ShareBrain = ({ open, onClose }: any) => {
   const generateShareLink = async () => {
     try {
       const response: any = await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/share",
+        "http://localhost:3000/api/v1/share",
         { share: true },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
 
-      setShareLink(
-        `https://secondbrain-5u8x.onrender.com/api/v1/${response.data.message}`
-      );
+      setShareLink(`http://localhost:3000/api/v1/${response.data.message}`);
       setIsLinkGenerated(true);
 
       localStorage.setItem("shareLink", response.data.message);
@@ -40,7 +38,7 @@ export const ShareBrain = ({ open, onClose }: any) => {
   const disableShareLink = async () => {
     try {
       await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/share",
+        "http://localhost:3000/api/v1/share",
         { share: false },
         {
           headers: { Authorization: localStorage.getItem("token") },

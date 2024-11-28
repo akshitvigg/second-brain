@@ -7,6 +7,7 @@ import { MainLogo } from "./logo";
 import { Card } from "./cards";
 import { SideItems } from "./sideitems";
 import { useContent } from "../hooks/useContent";
+import { Bin } from "../icons/bin";
 
 export const SideBar = ({
   setModalOpen,
@@ -67,8 +68,14 @@ export const SideBar = ({
             .filter(
               ({ type }) => selectedContent === null || type === selectedContent
             )
-            .map(({ type, link, title }) => (
-              <Card key={link} title={title} type={type} link={link} />
+            .map(({ type, link, title, _id }) => (
+              <Card
+                key={link}
+                contentId={_id}
+                title={title}
+                type={type}
+                link={link}
+              />
             ))}
         </div>
       </div>

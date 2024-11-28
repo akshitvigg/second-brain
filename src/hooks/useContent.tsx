@@ -6,7 +6,7 @@ export function useContent() {
 
   function refresh() {
     axios
-      .get("https://secondbrain-5u8x.onrender.com/api/v1/content", {
+      .get("http://localhost:3000/api/v1/content", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -20,7 +20,7 @@ export function useContent() {
     refresh();
     let interval = setInterval(() => {
       refresh();
-    }, 10 * 1000);
+    }, 4 * 1000);
 
     return () => {
       clearInterval(interval);

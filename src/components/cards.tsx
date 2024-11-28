@@ -13,6 +13,7 @@ interface CardProps {
   title: string;
   link: string;
   type: string;
+  contentId: string;
 }
 enum ContentType {
   Youtube = "youtube",
@@ -201,13 +202,14 @@ export const Card = (props: CardProps) => {
               <Share size="md" />
             </div>
             <div className="pr-3 text-gray-600">
-              <Bin size="md" />
+              <Bin contentId={props.contentId} size="md" />
             </div>
           </div>
         </div>
         <div>{renderContent()}</div>
         <div className=" text-sm text-gray-500 pt-2 flex items-end">
-          Added on {formattedDate}
+          Added on {`${formattedDate} " `}
+          {props.contentId}
         </div>
       </div>
     </>

@@ -3,6 +3,7 @@ import { Close } from "../icons/close";
 import { InputComp } from "./input";
 import { Button } from "./button";
 import axios from "axios";
+import { Loader } from "./loader";
 
 enum ContentType {
   Youtube = "youtube",
@@ -18,31 +19,32 @@ export const CreateContentModal = ({ open, onClose }: any) => {
   const linkRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState(ContentType.Youtube);
   const [content, setContent] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
   async function addcontent() {
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
+
+    setLoading(true);
 
     try {
       const newContent = { title, link, type };
 
       setContent([...content, newContent]);
 
-      await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/content",
-        newContent,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      );
+      await axios.post("http://localhost:3000/api/v1/content", newContent, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
 
       if (titleRef.current) titleRef.current.value = "";
       if (linkRef.current) linkRef.current.value = "";
     } catch (error) {
       console.error("Error adding content:", error);
       alert("There was an error adding the content. Please try again.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -143,7 +145,7 @@ export const CreateContentModal = ({ open, onClose }: any) => {
                 center={true}
                 variant="primary"
                 size="lg"
-                text="Submit"
+                text={loading ? <Loader /> : "Submit"}
               />
             </div>
           </span>

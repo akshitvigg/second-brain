@@ -3,6 +3,7 @@ import { InputComp } from "./input";
 import { Button } from "./button";
 import { useRef, useState } from "react";
 import axios from "axios";
+import { Loader } from "./loader";
 
 export const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ export const Signup = () => {
     setError(null);
 
     try {
-      await axios.post("https://secondbrain-5u8x.onrender.com/api/v1/signup", {
+      await axios.post("http://localhost:3000/api/v1/signup", {
         username,
         password,
       });
@@ -40,7 +41,7 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
+    <div className="flex font-apple pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
       <div className="border-gray-200 border bg-white h-custom-h shadow-md rounded-lg w-full max-w-sm p-6">
         <div className="pt-4 flex justify-center">
           <p className="w-full text-3xl font-bold text-center">
@@ -69,7 +70,7 @@ export const Signup = () => {
             variant="primary"
             center={true}
             width="full"
-            text={loading ? "Signing Up..." : "Sign Up"}
+            text={loading ? <Loader /> : "Sign Up"}
             disabled={loading}
           />
         </div>

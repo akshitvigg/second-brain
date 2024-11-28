@@ -3,6 +3,7 @@ import { InputComp } from "./input";
 import { Button } from "./button";
 import { useRef, useState } from "react";
 import axios from "axios";
+import { Loader } from "./loader";
 
 export const SignIn = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -21,11 +22,12 @@ export const SignIn = () => {
       return;
     }
 
+    setLoading(true);
     setError(null);
 
     try {
       const response: any = await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/signin",
+        "http://localhost:3000/api/v1/signin",
         { username, password }
       );
       const jwt = response.data.token;
@@ -41,7 +43,7 @@ export const SignIn = () => {
   };
 
   return (
-    <div className="flex pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
+    <div className="flex font-apple pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
       <div className="border-gray-200 border bg-white h-custom-h shadow-md rounded-lg w-full max-w-sm p-6">
         <div className="pt-4 flex justify-center">
           <p className="w-full text-3xl font-bold text-center">
@@ -70,7 +72,7 @@ export const SignIn = () => {
             variant="primary"
             center={true}
             width="full"
-            text={loading ? "Signing In..." : "Sign In"}
+            text={loading ? <Loader /> : "Sign In"} // Show loader when loading
             disabled={loading}
           />
         </div>
