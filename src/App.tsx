@@ -6,7 +6,6 @@ import { SignIn } from "./components/signin";
 import { CreateContentModal } from "./components/CreateContentModal";
 import { ShareBrain } from "./components/ShareBrain";
 import { SideBar } from "./components/sidebar";
-import { Loader } from "./components/loader";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);

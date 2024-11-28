@@ -26,7 +26,7 @@ export const Signup = () => {
     setError(null);
 
     try {
-      await axios.post("http://localhost:3000/api/v1/signup", {
+      await axios.post("https://secondbrain-5u8x.onrender.com/api/v1/signup", {
         username,
         password,
       });

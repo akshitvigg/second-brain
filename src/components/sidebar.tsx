@@ -7,7 +7,6 @@ import { MainLogo } from "./logo";
 import { Card } from "./cards";
 import { SideItems } from "./sideitems";
 import { useContent } from "../hooks/useContent";
-import { Bin } from "../icons/bin";
 
 export const SideBar = ({
   setModalOpen,

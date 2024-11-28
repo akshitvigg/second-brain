@@ -1,13 +1,24 @@
-import { Sizeprops, sizeStyles } from "./iconStyles";
 import axios from "axios";
+import { Sizeprops, sizeStyles } from "./iconStyles";
 
 export const Bin = (props: Sizeprops) => {
   console.log("Deleting content with ID:", props.contentId);
+
   const deleteContent = async () => {
     try {
-      await axios.delete("http://localhost:3000/api/v1/content", {
-        params: { contentId: props.contentId },
-      });
+      const config: Record<string, unknown> = {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        data: {
+          contentId: props.contentId,
+        },
+      };
+      await axios.delete(
+        "https://secondbrain-5u8x.onrender.com/api/v1/content",
+        config
+      );
 
       alert("Content deleted successfully");
     } catch (e) {
@@ -15,7 +26,6 @@ export const Bin = (props: Sizeprops) => {
       alert("Failed to delete content");
     }
   };
-
   return (
     <>
       <svg

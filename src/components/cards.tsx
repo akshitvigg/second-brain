@@ -208,8 +208,7 @@ export const Card = (props: CardProps) => {
         </div>
         <div>{renderContent()}</div>
         <div className=" text-sm text-gray-500 pt-2 flex items-end">
-          Added on {`${formattedDate} " `}
-          {props.contentId}
+          Added on {formattedDate}
         </div>
       </div>
     </>

@@ -32,11 +32,15 @@ export const CreateContentModal = ({ open, onClose }: any) => {
 
       setContent([...content, newContent]);
 
-      await axios.post("http://localhost:3000/api/v1/content", newContent, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      await axios.post(
+        "https://secondbrain-5u8x.onrender.com/api/v1/content",
+        newContent,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
 
       if (titleRef.current) titleRef.current.value = "";
       if (linkRef.current) linkRef.current.value = "";
