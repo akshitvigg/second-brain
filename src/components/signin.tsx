@@ -72,7 +72,7 @@ export const SignIn = () => {
             variant="primary"
             center={true}
             width="full"
-            text={loading ? <Loader /> : "Sign In"} // Show loader when loading
+            text={loading ? <Loader /> : "Sign In"}
             disabled={loading}
           />
         </div>
