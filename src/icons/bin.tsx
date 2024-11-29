@@ -2,8 +2,6 @@ import axios from "axios";
 import { Sizeprops, sizeStyles } from "./iconStyles";
 
 export const Bin = (props: Sizeprops) => {
-  console.log("Deleting content with ID:", props.contentId);
-
   const deleteContent = async () => {
     try {
       const config: Record<string, unknown> = {
