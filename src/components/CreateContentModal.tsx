@@ -161,7 +161,7 @@ export const CreateContentModal = ({ open, onClose }: any) => {
               </div>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 flex justify-center">
               <Button
                 onClick={addcontent}
                 modalwidth="full"
