@@ -39,3 +39,9 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "CustomAppleFont";
+  src: url('assets/SF-Pro-Rounded-Semibold.otf');
+  font-style: normal;
+}
