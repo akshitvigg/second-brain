@@ -41,7 +41,7 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex font-apple pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
+    <div className="flex  font-appleRound pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
       <div className="border-gray-200 border bg-white h-custom-h shadow-md rounded-lg w-full max-w-sm p-6">
         <div className="pt-4 flex justify-center">
           <p className="w-full text-3xl font-bold text-center">
