@@ -38,12 +38,13 @@ export const SideBar = ({
         </div>
       </div>
       <div className="bg-slate-100 w-full">
-        <div className="flex justify-between mt-8">
-          <p className="flex items-center font-apple font-bold ml-10 text-2xl">
+        {/* ----- */}
+        <div className="flex flex-col sm:flex-row justify-between mt-8">
+          <p className="flex justify-center items-center mb-4 sm:mb-0 font-apple font-bold ml-10 text-3xl sm:text-2xl">
             All Notes
           </p>
-          <div className="flex mr-6">
-            <div className="mr-4">
+          <div className="flex justify-center  sm:mr-6">
+            <div className="mr-4 ">
               <Button
                 onClick={() => setshareModalOpen(true)}
                 variant="secondary"

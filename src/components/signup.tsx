@@ -70,6 +70,7 @@ export const Signup = () => {
             variant="primary"
             center={true}
             width="full"
+     
             text={loading ? <Loader /> : "Sign Up"}
             disabled={loading}
           />
