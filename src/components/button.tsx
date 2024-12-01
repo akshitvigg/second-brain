@@ -11,6 +11,7 @@ interface ButtonProps {
   modalwidth?: string;
   disabled?: boolean;
   loading?: boolean;
+  modal?:boolean;
   onClick?: () => void;
 }
 
@@ -41,10 +42,10 @@ export const Button = (props: ButtonProps) => {
       className={`${variantStyle.get(props.variant)} ${sizeStyles.get(
         props.size
       )} transition-all duration-300 ease-in-out active:scale-95 ${
-        props.width ? "w-70" : ""
-      } ${props.modalwidth ? "w-80" : ""} relative ${
+        props.width ? "w-72" : ""
+      } ${props.modalwidth ? "w-[335px]" : ""} relative ${
         props.loading ? "ld-ext-right running" : ""
-      }`}
+      } ${props.modal && "py-3"}`}
     >
       <div
         className={
