@@ -5,12 +5,12 @@ interface inputProps {
   modal ? : boolean
 }
 
-export const InputComp = ({ placeholder, reference,modal }: inputProps) => {
+export const InputComp = ({ placeholder, reference }: inputProps) => {
   return (
     <div className="mt-4 ">
       <input
-        className={` outline-none sm:px-12 sm:py-2  border-slate-400 border rounded-md 
-             ${modal && "sm:py-3 py-3 w-[335px]"}  `}
+        className={` sm:py-3 sm:px-[73px] py-3 px-9  border-slate-400 border rounded-md 
+       `}
         type="text"
         placeholder={placeholder}
         ref={reference}
@@ -18,11 +18,5 @@ export const InputComp = ({ placeholder, reference,modal }: inputProps) => {
     </div>
   );
 
-//   className={` outline-none sm:px-12 sm:py-2 px-6 py-2 border-slate-400 border rounded-md ${
-//     width && "w-[335px]"
-//   } ${modal && "sm:py-3 py-3"} `}
-//   type="text"
-//   placeholder={placeholder}
-//   ref={reference}
-// />
+
 };
