@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
-
 import { InputComp } from "./input";
 import { Button } from "./button";
 import axios from "axios";
 import { Loader } from "./loader";
-import { X } from "lucide-react";
+import { X, PlusCircle } from "lucide-react";
 
 enum ContentType {
   Youtube = "youtube",
@@ -103,46 +102,60 @@ export const CreateContentModal = ({ open, onClose }: any) => {
   return (
     <>
       {open && (
-        <div className=" font-apple fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="relative h-[700] w-full max-w-md bg-white rounded-md p-6 flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+          <div className="relative sm:w-full w-80 max-w-md bg-white rounded-xl shadow-2xl border border-gray-100 p-8 transform transition-all duration-300 ease-in-out">
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 rounded-full p-1 hover:bg-gray-100"
             >
-              <X size={24} />
+              <X size={24}  />
             </button>
-            <h2 className="text-3xl font-bold text-center mb-6">Add Content</h2>
+            
+            <div className="flex flex-col items-center mb-6">
+              <PlusCircle size={48} className="text-blue-500 mb-4" strokeWidth={1.5} />
+              <h2 className="text-2xl font-semibold text-gray-800">Add New Content</h2>
+              <p className="text-gray-500 text-sm mt-2">Share your resource</p>
+            </div>
 
-            <div className="flex-grow">
-              <div className="mb-4 flex justify-center">
+            <div className="space-y-4">
+              <div className=" flex justify-center">
+                <div>
                 <InputComp
                   width="full"
+                  modal={true}
                   reference={titleRef}
-                  placeholder="title"
+                  placeholder="Content Title"
                 />
-                
+                {errors.title && (
+                  <p className="text-red-500 text-xs mt-1 pl-1">{errors.title}</p>
+                )}
+                </div>
               </div>
 
-              <div className="mb-4 flex justify-center  ">
+              <div className=" flex justify-center">
+                <div>
                 <InputComp
                   width="full"
+                  modal={true}
                   reference={linkRef}
-                  placeholder="link"
+                  placeholder="Paste Link Here"
                 />
-                
+                {errors.link && (
+                  <p className="text-red-500 text-xs mt-1 pl-1">{errors.link}</p>
+                )}
+                </div>
               </div>
 
               <div className="mt-6">
-                <h3 className="text-xl text-gray-600 font-bold text-center mb-4">
-                  Content Type  
+                <h3 className="text-sm text-gray-600 font-medium text-center mb-4">
+                  Select Content Type
                 </h3>
-                
                 <div className="flex flex-wrap justify-center gap-2">
                   {Object.values(ContentType).map((contentType) => (
                     <Button
                       key={contentType}
                       size="sm"
-                      text={contentType}
+                      text={contentType.charAt(0).toUpperCase() + contentType.slice(1)}
                       variant={type === contentType ? "primary" : "secondary"}
                       onClick={() => {
                         setType(contentType);
@@ -154,21 +167,22 @@ export const CreateContentModal = ({ open, onClose }: any) => {
                   ))}
                 </div>
                 {errors.type && (
-                  <p className="text-red-500 text-sm mt-2 text-center">
+                  <p className="text-red-500 text-xs mt-2 text-center">
                     {errors.type}
                   </p>
                 )}
               </div>
             </div>
 
-            <div className="mt-6 flex justify-center">
+            <div className="mt-8 flex justify-center">
               <Button
                 onClick={addcontent}
                 modalwidth="full"
                 center={true}
                 variant="primary"
                 size="lg"
-                text={loading ? <Loader /> : "Submit"}
+                modal={true}
+                text={loading ? <Loader /> : "Submit Content"}
               />
             </div>
           </div>
