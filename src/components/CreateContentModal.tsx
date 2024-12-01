@@ -102,7 +102,7 @@ export const CreateContentModal = ({ open, onClose }: any) => {
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50  flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <div className="relative sm:w-full w-80 max-w-md bg-white rounded-xl shadow-2xl border border-gray-100 p-8 transform transition-all duration-300 ease-in-out">
             <button
               onClick={onClose}
