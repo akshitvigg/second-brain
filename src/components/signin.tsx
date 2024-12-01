@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { InputComp } from "./input";
 import { Button } from "./button";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Loader } from "./loader";
+import { AuthInputcomp } from "./authinput";
 
 export const SignIn = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -52,11 +52,11 @@ export const SignIn = () => {
         </div>
 
         <div className="pt-5 flex justify-center">
-          <InputComp reference={usernameRef} placeholder="Username" />
+          <AuthInputcomp reference={usernameRef} placeholder="Username" />
         </div>
 
         <div className="pt-4 flex justify-center">
-          <InputComp reference={passwordRef} placeholder="Password" />
+          <AuthInputcomp reference={passwordRef} placeholder="Password" />
         </div>
 
         {error && (
