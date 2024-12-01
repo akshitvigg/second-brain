@@ -42,7 +42,7 @@ export const Button = (props: ButtonProps) => {
         props.size
       )} transition-all duration-300 ease-in-out active:scale-95 ${
         props.width ? "w-72" : ""
-      } ${props.modalwidth ? "w-96" : ""} relative ${
+      } ${props.modalwidth ? "w-80" : ""} relative ${
         props.loading ? "ld-ext-right running" : ""
       }`}
     >
