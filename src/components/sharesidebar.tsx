@@ -44,13 +44,13 @@ const SharedContent = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="flex">
+    <div className="flex font-poppins">
       <div className="transition-all duration-500 bg-white border border-gray-300 shadow-lg sm:w-80 min-h-screen w-0">
         <div className="flex justify-center">
           <div className="mt-5">
             <MainLogo src={logo} size={40} />
           </div>
-          <p className="text-2xl font-apple mt-6 ml-3 font-bold">
+          <p className="text-2xl  mt-6 ml-3 font-bold">
             Second Brain
           </p>
         </div>
@@ -60,7 +60,7 @@ const SharedContent = () => {
       </div>
       <div className="bg-slate-100 w-full">
         <div className="flex justify-between mt-8">
-          <p className="flex items-center font-apple font-bold ml-10 text-2xl">
+          <p className="flex items-center  font-bold ml-10 text-2xl">
             {`${name}'s Brain`}
           </p>
 
