@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import logo from "../assets/brain.png";
 import { MainLogo } from "./logo";
-import { Card } from "./cards";
 import { SideItems } from "./sideitems";
+import { ShareCard } from "./ShareCards";
 
 const SharedContent = () => {
   const { sharelink } = useParams();
@@ -75,7 +75,7 @@ const SharedContent = () => {
                 selectedContent === null || type === selectedContent
             )
             .map((item: any) => (
-              <Card
+              <ShareCard
                 key={item.id}
                 title={item.title}
                 link={item.link}
