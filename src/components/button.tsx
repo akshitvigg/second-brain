@@ -11,7 +11,7 @@ interface ButtonProps {
   modalwidth?: string;
   disabled?: boolean;
   loading?: boolean;
-  modal?:boolean;
+  modal?: boolean;
   onClick?: () => void;
 }
 
