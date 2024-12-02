@@ -11,7 +11,7 @@ export default {
         },
       },
       fontFamily: {
-        appleRound: ['CustomAppleFont'],
+        poppins : ['Poppins'],
       },
       height: {
         "custom-h": "460px",
