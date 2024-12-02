@@ -23,7 +23,7 @@ export const SideBar = ({
   };
 
   return (
-    <div className="flex">
+    <div className="flex font-poppins">
       <div className="transition-all duration-500 bg-white border border-gray-300 shadow-lg sm:w-80 min-h-screen w-0">
         <div className="flex justify-center">
           <div className="mt-5">
