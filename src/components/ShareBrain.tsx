@@ -77,7 +77,7 @@ export const ShareBrain = ({ open, onClose }: any) => {
   if (!open) return null;
 
   return (
-    <div className="fixed  inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div className="fixed font-poppins  inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
       <div className="relative w-full max-w-md bg-white rounded-xl shadow-2xl p-6 mx-4">
         <button
           onClick={onClose}
