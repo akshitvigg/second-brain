@@ -48,7 +48,6 @@ export const SideBar = ({
 
   return (
     <div className={`flex font-poppins ${isDarkMode ? "dark" : ""}`}>
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
@@ -56,7 +55,6 @@ export const SideBar = ({
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Sidebar */}
       <div
         ref={sidebarRef}
         className={`fixed sm:relative transition-all duration-300 dark:bg-[#1A1E24] dark:text-gray-200 bg-[#F5F7FA] border-r dark:border-gray-800 border-gray-200 shadow-lg sm:w-80 min-h-screen z-40
@@ -75,7 +73,6 @@ export const SideBar = ({
         </div>
       </div>
 
-      {/* Overlay */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden"
