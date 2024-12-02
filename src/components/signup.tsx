@@ -41,10 +41,10 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex  font-appleRound pt-24 justify-center bg-white min-h-screen p-8 bg-pattern">
+    <div className="flex pt-24 font-poppins justify-center bg-white min-h-screen p-8 bg-pattern">
       <div className="border-gray-200 border bg-white h-custom-h shadow-md rounded-lg w-full max-w-sm p-6">
         <div className="pt-4 flex justify-center">
-          <p className="w-full text-3xl font-bold text-center">
+          <p className="w-full  text-3xl font-bold text-center">
             Sign Up and Sync Your Ideas!
           </p>
         </div>
@@ -88,7 +88,7 @@ export const Signup = () => {
           </p>
         </div>
         <div className="pt-4 flex justify-center">
-          <p className="text-sm text-gray-500 text-center">
+          <p className="text-sm  text-gray-500 text-center">
             Before registering, read and agree with our{" "}
             <span className="text-[#414D5D]">
               Terms of Service and Privacy Policy

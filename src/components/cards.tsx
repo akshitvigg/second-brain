@@ -191,7 +191,7 @@ export const Card = (props: CardProps) => {
 
   return (
     <>
-      <div className="p-4 h-auto font-appleRound   border-gray-200 border shadow-md bg-white rounded-lg w-full transition duration-200 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+      <div className="p-4 h-auto  border-gray-200 border shadow-md bg-white rounded-lg w-full transition duration-200 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="pr-2 ml-3">{renderIcon()}</div>

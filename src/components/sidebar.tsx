@@ -29,7 +29,7 @@ export const SideBar = ({
           <div className="mt-5">
             <MainLogo src={logo} size={40} />
           </div>
-          <p className="text-2xl font-appleRound mt-6 ml-3 font-bold">
+          <p className="text-2xl  mt-6 ml-3 font-bold">
             Second Brain
           </p>
         </div>
@@ -40,7 +40,7 @@ export const SideBar = ({
       <div className="bg-slate-100 w-full">
         {/* ----- */}
         <div className="flex flex-col sm:flex-row justify-between mt-8">
-          <p className="flex justify-center items-center mb-4 sm:mb-0 font-appleRound font-bold ml-10 text-3xl sm:text-2xl">
+          <p className="flex justify-center items-center mb-4 sm:mb-0  font-bold ml-10 text-3xl sm:text-2xl">
             All Notes
           </p>
           <div className="flex justify-center  sm:mr-6">
