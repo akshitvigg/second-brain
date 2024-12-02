@@ -20,11 +20,11 @@ type Variants = "primary" | "secondary";
 const variantStyle = new Map<Variants, string>();
 variantStyle.set(
   "primary",
-  "bg-purple-600 hover:bg-purple-500 font-appleRound text-white active:bg-purple-500"
+  "bg-purple-600 hover:bg-purple-500 text-white active:bg-purple-500"
 );
 variantStyle.set(
   "secondary",
-  " font-appleRound bg-purple-300 text-purple-600 hover:bg-purple-500 hover:text-white active:bg-purple-600"
+  "  bg-purple-300 text-purple-600 hover:bg-purple-500 hover:text-white active:bg-purple-600"
 );
 
 type Sizes = "sm" | "md" | "lg";
