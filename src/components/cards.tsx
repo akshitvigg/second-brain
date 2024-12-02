@@ -1,6 +1,5 @@
 import { Bin } from "../icons/bin";
 import { NoteIcon } from "../icons/note";
-import { Share } from "../icons/share";
 import { useEffect } from "react";
 import { format } from "date-fns";
 import { YTIcon } from "../icons/ytIcons";
@@ -23,6 +22,21 @@ enum ContentType {
   Medium = "medium",
   Instagram = "instagram",
 }
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds: {
+        process: () => void;
+      };
+    };
+    twttr?: {
+      widgets: {
+        load: () => void;
+      };
+    };
+  }
+}
+
 export const Card = (props: CardProps) => {
   const currentDate = new Date();
   const formattedDate = format(new Date(currentDate), "dd/MM/yy");
@@ -46,14 +60,81 @@ export const Card = (props: CardProps) => {
   };
 
   useEffect(() => {
+   
+    const addTwitterTheme = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      const twitterScriptElement = document.querySelector('script[src="https://platform.twitter.com/widgets.js"]');
+      
+      if (twitterScriptElement) {
+        window.twttr?.widgets.load();
+        const twitterEmbeds = document.querySelectorAll('.twitter-tweet');
+        twitterEmbeds.forEach((embed) => {
+          embed.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        });
+      }
+    };
+
     if (props.link.includes("twitter.com") || props.link.includes("x.com")) {
       const script = document.createElement("script");
       script.src = "https://platform.twitter.com/widgets.js";
       script.async = true;
       document.body.appendChild(script);
 
+      script.onload = addTwitterTheme;
+
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            addTwitterTheme();
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, { attributes: true });
+
       return () => {
         document.body.removeChild(script);
+        observer.disconnect();
+      };
+    }
+  }, [props.link]);
+
+  useEffect(() => {
+
+    const addInstagramTheme = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      const instaEmbeds = document.querySelectorAll('.instagram-media');
+      instaEmbeds.forEach((embed) => {
+        embed.classList.toggle('dark-theme', isDarkMode);
+      });
+    };
+
+    if (props.link.includes("instagram.com")) {
+      const script = document.createElement("script");
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        window.instgrm?.Embeds.process();
+        addInstagramTheme();
+      };
+
+      
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            addInstagramTheme();
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, { attributes: true });
+
+      return () => {
+        document.body.removeChild(script);
+        observer.disconnect();
       };
     }
   }, [props.link]);
@@ -67,7 +148,7 @@ export const Card = (props: CardProps) => {
     if (adjustedLink.includes("twitter.com")) {
       return (
         <div
-          className="overflow-hidden mt-4 w-full max-w-full"
+          className="overflow-hidden mt-4 w-full max-w-full dark:bg-[#1A1E24] bg-gray-50"
           style={{
             maxWidth: "400px",
             height: "250px",
@@ -79,6 +160,7 @@ export const Card = (props: CardProps) => {
         >
           <blockquote
             className="twitter-tweet w-full"
+            data-theme="light"
             style={{
               maxWidth: "100%",
               boxSizing: "border-box",
@@ -101,7 +183,7 @@ export const Card = (props: CardProps) => {
       if (videoId) {
         return (
           <iframe
-            className="w-full mt-5 h-48 rounded-lg"
+            className="w-full mt-5 h-48 rounded-lg shadow-md dark:border dark:border-gray-800"
             src={`https://www.youtube.com/embed/${videoId}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -114,9 +196,14 @@ export const Card = (props: CardProps) => {
 
     if (adjustedLink.includes("medium.com")) {
       return (
-        <div className="pt-4">
+        <div className="pt-4 dark:text-gray-300">
           <p>Read the full article on Medium:</p>
-          <a href={adjustedLink} target="_blank" rel="noopener noreferrer">
+          <a 
+            href={adjustedLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 hover:underline"
+          >
             {adjustedLink}
           </a>
         </div>
@@ -125,8 +212,8 @@ export const Card = (props: CardProps) => {
 
     if (adjustedLink.includes(".mp3") || adjustedLink.includes(".ogg")) {
       return (
-        <div className=" pt-6 rounded-lg w-full mt-4">
-          <audio controls className="rounded-lg w-full max-w-full">
+        <div className="pt-6 rounded-lg w-full mt-4 dark:bg-[#1A1E24]">
+          <audio controls className="rounded-lg w-full max-w-full dark:bg-gray-800">
             <source src={adjustedLink} type="audio/ogg" />
             <source src={adjustedLink} type="audio/mp3" />
             Your browser does not support the audio element.
@@ -135,20 +222,9 @@ export const Card = (props: CardProps) => {
       );
     }
     if (adjustedLink.includes("instagram.com")) {
-      useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://www.instagram.com/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-          document.body.removeChild(script);
-        };
-      }, [adjustedLink]);
-
       return (
         <div
-          className="overflow-hidden mt-4 w-full max-w-full"
+          className="overflow-hidden mt-4 w-full max-w-full dark:bg-[#1A1E24]"
           style={{
             maxWidth: "400px",
             height: "250px",
@@ -191,23 +267,21 @@ export const Card = (props: CardProps) => {
 
   return (
     <>
-      <div className="p-4 h-auto font-poppins dark:bg-[#0D1117]   border-gray-200 border shadow-md bg-white rounded-lg w-full transition duration-200 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+      <div className="p-4 h-auto font-poppins dark:bg-[#1A1E24] dark:border-gray-800 border-gray-200 border shadow-md bg-white rounded-lg w-full transition duration-200 hover:scale-105 hover:shadow-lg dark:hover:bg-gray-900 hover:bg-gray-100">
         <div className="flex justify-between">
           <div className="flex items-center">
-            <div className="pr-2 ml-3">{renderIcon()}</div>
-            <p className="  text-lg">{props.title}</p>
+            <div className="pr-2 ml-3  ">{renderIcon()}</div>
+            <p className="text-lg dark:text-gray-200 text-gray-800">{props.title}</p>
           </div>
           <div className="flex items-center">
-            <div className="pr-4 text-gray-600">
-              <Share size="md" />
-            </div>
-            <div className="pr-3 text-gray-600">
+            
+            <div className="pr-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white">
               <Bin contentId={props.contentId} size="md" />
             </div>
           </div>
         </div>
         <div>{renderContent()}</div>
-        <div className=" text-sm text-gray-500 pt-2 flex items-end">
+        <div className="text-sm text-gray-500 dark:text-gray-400 pt-2 flex items-end">
           Added on {formattedDate}
         </div>
       </div>
