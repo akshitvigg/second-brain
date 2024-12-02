@@ -31,7 +31,7 @@ type Sizes = "sm" | "md" | "lg";
 
 const sizeStyles = new Map<Sizes, string>();
 sizeStyles.set("lg", "py-2 px-5 text-xl rounded-lg");
-sizeStyles.set("md", "py-2 sm:px-4 px-3 sm:text-lg text-sm  rounded-md");
+sizeStyles.set("md", "py-2 sm:px-4 px-2 sm:text-lg text-sm  rounded-md");
 sizeStyles.set("sm", "py-1 px-2 text-xs rounded-md");
 
 export const Button = (props: ButtonProps) => {
