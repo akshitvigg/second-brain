@@ -20,7 +20,7 @@ type Variants = "primary" | "secondary";
 const variantStyle = new Map<Variants, string>();
 variantStyle.set(
   "primary",
-  "bg-purple-600 hover:bg-purple-500 text-white active:bg-purple-500"
+  "bg-purple-600 hover:bg-purple-500  text-white active:bg-purple-500"
 );
 variantStyle.set(
   "secondary",
@@ -31,7 +31,7 @@ type Sizes = "sm" | "md" | "lg";
 
 const sizeStyles = new Map<Sizes, string>();
 sizeStyles.set("lg", "py-2 px-5 text-xl rounded-lg");
-sizeStyles.set("md", "py-2 px-4 text-lg rounded-md");
+sizeStyles.set("md", "py-2 px-4 sm:text-lg text-md  rounded-md");
 sizeStyles.set("sm", "py-1 px-2 text-xs rounded-md");
 
 export const Button = (props: ButtonProps) => {
@@ -45,7 +45,7 @@ export const Button = (props: ButtonProps) => {
         props.width ? "w-72" : ""
       } ${props.modalwidth ? "w-[335px]" : ""} relative ${
         props.loading ? "ld-ext-right running" : ""
-      } ${props.modal && "py-3"}`}
+      } ${props.modal && "sm:py-3 py-2"}`}
     >
       <div
         className={
