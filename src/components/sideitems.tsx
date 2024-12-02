@@ -20,7 +20,7 @@ export const SideItems = ({ onItemClick }: SideItemsProps) => {
   };
 
   return (
-    <div className="ml-5 ">
+    <div className="ml-5 font-poppins ">
       <div
         className="flex transition duration-200 hover:cursor-pointer hover:bg-gray-200 w-48 items-center p-3 text-[#414D5D]"
         onClick={() => onItemClick(null)}
