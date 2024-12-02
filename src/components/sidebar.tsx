@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "./button";
 import { Plus } from "../icons/plus";
 import { Share } from "../icons/share";
+import { Moon, Sun } from "lucide-react";
 import logo from "../assets/brain.png";
 import { MainLogo } from "./logo";
 import { Card } from "./cards";
@@ -17,42 +18,53 @@ export const SideBar = ({
 }) => {
   const { content } = useContent();
   const [selectedContent, setSelectedContent] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleContentSelection = (contentType: string | null) => {
     setSelectedContent(contentType);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.querySelector("html")?.classList.toggle("dark");
+  };
+
   return (
-    <div className="flex font-poppins">
-      <div className="transition-all duration-500 bg-white border border-gray-300 shadow-lg sm:w-80 min-h-screen w-0">
-        <div className="flex justify-center">
-          <div className="mt-5">
-            <MainLogo src={logo} size={40} />
-          </div>
-          <p className="text-2xl  mt-6 ml-3 font-bold">
+    <div className={`flex font-poppins ${isDarkMode ? 'dark' : ''}`}>
+      <div className="transition-all duration-500 dark:bg-[#1A1E24] dark:text-gray-200 bg-[#F5F7FA] border-r dark:border-gray-800 border-gray-200 shadow-lg sm:w-80 min-h-screen w-0">
+        <div className="flex items-center justify-center space-x-3 pt-6 pb-4">
+          <MainLogo src={logo} size={40} />
+          <p className="text-2xl font-bold dark:text-white text-gray-800">
             Second Brain
           </p>
         </div>
-        <div className="mt-7">
+        <div className="mt-6">
           <SideItems onItemClick={handleContentSelection} />
         </div>
       </div>
-      <div className="bg-slate-100 w-full">
-        {/* ----- */}
-        <div className="flex flex-col sm:flex-row justify-between mt-8">
-          <p className="flex justify-center items-center mb-4 sm:mb-0  font-bold ml-10 text-3xl sm:text-2xl">
+      <div className="bg-white dark:bg-[#0D1117] dark:text-gray-300 w-full">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-8 px-6">
+          <p className="font-bold text-3xl sm:text-2xl text-gray-800 dark:text-white mb-4 sm:mb-0">
             All Notes
           </p>
-          <div className="flex justify-center  sm:mr-6">
-            <div className="mr-4 ">
-              <Button
-                onClick={() => setshareModalOpen(true)}
-                variant="secondary"
-                text="Share Brains"
-                size="md"
-                startIcons={<Share size="lg" />}
-              />
-            </div>
+          <div className="flex items-center space-x-4">
+            <button 
+              onClick={toggleDarkMode} 
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+            >
+              {isDarkMode ? (
+                <Sun className="text-yellow-500" size={20} />
+              ) : (
+                <Moon className="text-gray-600" size={20} />
+              )}
+            </button>
+            <Button
+              onClick={() => setshareModalOpen(true)}
+              variant="secondary"
+              text="Share Brains"
+              size="md"
+              startIcons={<Share size="lg" />}
+            />
             <Button
               onClick={() => setModalOpen(true)}
               variant="primary"
@@ -63,7 +75,7 @@ export const SideBar = ({
           </div>
         </div>
 
-        <div className="mt-6 mb-7 gap-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
+        <div className="mt-6 mb-7 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-6">
           {content
             .filter(
               ({ type }) => selectedContent === null || type === selectedContent
@@ -82,3 +94,5 @@ export const SideBar = ({
     </div>
   );
 };
+
+export default SideBar;
