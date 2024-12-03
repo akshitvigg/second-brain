@@ -5,6 +5,7 @@ import axios from "axios";
 import { Loader } from "./loader";
 import { AuthInputcomp } from "./authinput";
 import { z } from "zod";
+import { EyeOff, Eye } from "lucide-react";
 
 const inputSchema = z.object({
   username: z
@@ -27,6 +28,15 @@ export const Signup = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [type, setType] = useState("password");
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setType("text");
+    } else {
+      setType("password");
+    }
+  };
 
   const signup = async () => {
     const username = usernameRef.current?.value || "";
@@ -72,8 +82,18 @@ export const Signup = () => {
           <AuthInputcomp reference={usernameRef} placeholder="Username" />
         </div>
 
-        <div className="pt-4 flex justify-center">
-          <AuthInputcomp reference={passwordRef} placeholder="Password" />
+        <div className="pt-4 flex justify-center relative">
+          <AuthInputcomp
+            reference={passwordRef}
+            placeholder="Password"
+            type={type}
+          />
+          <button
+            onClick={handleToggle}
+            className="absolute right-4 top-1/2 transform translate-y-1 translate-x-6"
+          >
+            {type === "password" ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
         </div>
 
         {error && (
