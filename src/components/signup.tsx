@@ -4,6 +4,21 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { Loader } from "./loader";
 import { AuthInputcomp } from "./authinput";
+import { z } from "zod";
+
+const inputSchema = z.object({
+  username: z
+    .string()
+    .min(3, { message: "Username must have at least 3 characters" })
+    .max(10, { message: "Username can have at most 10 characters" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must have at least 8 characters" })
+    .max(20, { message: "Password can have at most 20 characters" })
+    .regex(/\W/, { message: "Password must contain a special character" })
+    .regex(/[A-Z]/, { message: "Password must contain an uppercase letter" })
+    .regex(/[a-z]/, { message: "Password must contain a lowercase letter" }),
+});
 
 export const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -14,12 +29,16 @@ export const Signup = () => {
   const [error, setError] = useState<string | null>(null);
 
   const signup = async () => {
-    const username = usernameRef.current?.value;
-    const password = passwordRef.current?.value;
+    const username = usernameRef.current?.value || "";
+    const password = passwordRef.current?.value || "";
 
-    if (!username || !password) {
-      setError("Username and password are required.");
-      return;
+    try {
+      inputSchema.parse({ username, password });
+    } catch (validationError) {
+      if (validationError instanceof z.ZodError) {
+        setError(validationError.errors[0].message);
+        return;
+      }
     }
 
     setLoading(true);
@@ -44,7 +63,7 @@ export const Signup = () => {
     <div className="flex pt-24 font-poppins justify-center bg-white min-h-screen p-8 bg-pattern">
       <div className="border-gray-200 border bg-white h-custom-h shadow-md rounded-lg w-full max-w-sm p-6">
         <div className="pt-4 flex justify-center">
-          <p className="w-full  text-3xl font-bold text-center">
+          <p className="w-full text-3xl font-bold text-center">
             Sign Up and Sync Your Ideas!
           </p>
         </div>
@@ -70,8 +89,6 @@ export const Signup = () => {
             variant="primary"
             center={true}
             width="full"
-            
-     
             text={loading ? <Loader /> : "Sign Up"}
             disabled={loading}
           />
@@ -88,7 +105,7 @@ export const Signup = () => {
           </p>
         </div>
         <div className="pt-4 flex justify-center">
-          <p className="text-sm  text-gray-500 text-center">
+          <p className="text-sm text-gray-500 text-center">
             Before registering, read and agree with our{" "}
             <span className="text-[#414D5D]">
               Terms of Service and Privacy Policy
