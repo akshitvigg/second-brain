@@ -81,7 +81,7 @@ export const SignIn = () => {
           <p className="text-sm text-gray-500 text-center">
             Haven't registered yet?{" "}
             <span className="text-[#414D5D] cursor-pointer">
-              <Link to={"/"}>
+              <Link to={"/signup"}>
                 <button>Sign Up</button>
               </Link>
             </span>
