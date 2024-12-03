@@ -12,6 +12,7 @@ interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   modal?: boolean;
+  space?: boolean;
   onClick?: () => void;
 }
 
@@ -30,7 +31,7 @@ variantStyle.set(
 type Sizes = "sm" | "md" | "lg";
 
 const sizeStyles = new Map<Sizes, string>();
-sizeStyles.set("lg", "py-2 px-5 text-xl rounded-lg");
+sizeStyles.set("lg", "py-2 sm:px-5 px-4 text-sm  sm:text-xl rounded-lg");
 sizeStyles.set("md", "py-2 sm:px-4 px-2 sm:text-lg text-sm  rounded-md");
 sizeStyles.set("sm", "py-1 px-2 text-xs rounded-md");
 
@@ -45,7 +46,7 @@ export const Button = (props: ButtonProps) => {
         props.width ? "w-72" : ""
       } ${props.modalwidth ? "w-[335px]" : ""} relative ${
         props.loading ? "ld-ext-right running" : ""
-      } ${props.modal && "sm:py-3 py-2"}`}
+      } ${props.modal && "sm:py-3 py-2"} ${props.space && "mr-4"}`}
     >
       <div
         className={
