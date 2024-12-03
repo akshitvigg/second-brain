@@ -8,6 +8,7 @@ import { MainLogo } from "./logo";
 import { Card } from "./cards";
 import { SideItems } from "./sideitems";
 import { useContent } from "../hooks/useContent";
+import { Link } from "react-router-dom";
 
 export const SideBar = ({
   setModalOpen,
@@ -63,10 +64,14 @@ export const SideBar = ({
           } sm:w-80 sm:left-0`}
       >
         <div className="flex items-center justify-center space-x-3 pt-6 pb-4">
-          <MainLogo src={logo} size={40} />
-          <p className="text-2xl font-bold dark:text-white text-gray-800">
-            Second Brain
-          </p>
+          <Link to={"/"}>
+            <MainLogo src={logo} size={40} />
+          </Link>
+          <Link to={"/"}>
+            <p className="text-2xl font-bold dark:text-white text-gray-800">
+              Second Brain
+            </p>
+          </Link>
         </div>
         <div className="mt-6">
           <SideItems onItemClick={handleContentSelection} />
