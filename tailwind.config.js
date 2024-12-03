@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode : "selector",
+  darkMode: "selector",
   theme: {
     extend: {
       colors: {
@@ -12,7 +12,7 @@ export default {
         },
       },
       fontFamily: {
-        poppins : ['Poppins'],
+        poppins: ["Poppins"],
       },
       height: {
         "custom-h": "460px",
