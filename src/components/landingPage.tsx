@@ -124,7 +124,7 @@ export const LandingPage = () => {
         </div>
 
         <div className="px-4 md:px-0">
-          <h1 className="text-center text-4xl md:text-[75px] font-bold leading-tight dark:text-neutral-100">
+          <h1 className="text-center text-4xl md:text-[80px] font-bold leading-tight dark:text-neutral-100">
             Organize and Share Your
             <br />
             Brain with Ease!
