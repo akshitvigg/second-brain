@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { Loader } from "./loader";
 import { AuthInputcomp } from "./authinput";
+import { EyeOff } from "lucide-react";
+import { Eye } from "lucide-react";
 
 export const SignIn = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -12,6 +14,15 @@ export const SignIn = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [type, setType] = useState<any>(EyeOff);
+
+  const handleToggle = () => {
+    if (type == "password") {
+      setType("text");
+    } else {
+      setType("password");
+    }
+  };
 
   const signin = async () => {
     const username = usernameRef.current?.value;
@@ -55,8 +66,18 @@ export const SignIn = () => {
           <AuthInputcomp reference={usernameRef} placeholder="Username" />
         </div>
 
-        <div className="pt-4 flex justify-center">
-          <AuthInputcomp reference={passwordRef} placeholder="Password" />
+        <div className="pt-4 flex justify-center relative">
+          <AuthInputcomp
+            reference={passwordRef}
+            type={type}
+            placeholder="Password"
+          />
+          <button
+            onClick={handleToggle}
+            className="absolute right-4 top-1/2 transform translate-y-1 translate-x-6"
+          >
+            {type === "password" ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
         </div>
 
         {error && (
