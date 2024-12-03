@@ -60,16 +60,17 @@ export const Card = (props: CardProps) => {
   };
 
   useEffect(() => {
-   
     const addTwitterTheme = () => {
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      const twitterScriptElement = document.querySelector('script[src="https://platform.twitter.com/widgets.js"]');
-      
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      const twitterScriptElement = document.querySelector(
+        'script[src="https://platform.twitter.com/widgets.js"]'
+      );
+
       if (twitterScriptElement) {
         window.twttr?.widgets.load();
-        const twitterEmbeds = document.querySelectorAll('.twitter-tweet');
+        const twitterEmbeds = document.querySelectorAll(".twitter-tweet");
         twitterEmbeds.forEach((embed) => {
-          embed.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+          embed.setAttribute("data-theme", isDarkMode ? "dark" : "light");
         });
       }
     };
@@ -82,10 +83,12 @@ export const Card = (props: CardProps) => {
 
       script.onload = addTwitterTheme;
 
-
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "class"
+          ) {
             addTwitterTheme();
           }
         });
@@ -101,12 +104,11 @@ export const Card = (props: CardProps) => {
   }, [props.link]);
 
   useEffect(() => {
-
     const addInstagramTheme = () => {
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      const instaEmbeds = document.querySelectorAll('.instagram-media');
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      const instaEmbeds = document.querySelectorAll(".instagram-media");
       instaEmbeds.forEach((embed) => {
-        embed.classList.toggle('dark-theme', isDarkMode);
+        embed.classList.toggle("dark-theme", isDarkMode);
       });
     };
 
@@ -121,10 +123,12 @@ export const Card = (props: CardProps) => {
         addInstagramTheme();
       };
 
-      
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "class"
+          ) {
             addInstagramTheme();
           }
         });
@@ -198,9 +202,9 @@ export const Card = (props: CardProps) => {
       return (
         <div className="pt-4 dark:text-gray-300">
           <p>Read the full article on Medium:</p>
-          <a 
-            href={adjustedLink} 
-            target="_blank" 
+          <a
+            href={adjustedLink}
+            target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 dark:text-blue-400 hover:underline"
           >
@@ -213,7 +217,10 @@ export const Card = (props: CardProps) => {
     if (adjustedLink.includes(".mp3") || adjustedLink.includes(".ogg")) {
       return (
         <div className="pt-6 rounded-lg w-full mt-4 dark:bg-[#1A1E24]">
-          <audio controls className="rounded-lg w-full max-w-full dark:bg-gray-800">
+          <audio
+            controls
+            className="rounded-lg w-full max-w-full dark:bg-gray-800"
+          >
             <source src={adjustedLink} type="audio/ogg" />
             <source src={adjustedLink} type="audio/mp3" />
             Your browser does not support the audio element.
@@ -271,10 +278,11 @@ export const Card = (props: CardProps) => {
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="pr-2 ml-3  ">{renderIcon()}</div>
-            <p className="text-lg dark:text-gray-200 text-gray-800">{props.title}</p>
+            <p className="text-lg dark:text-gray-200 text-gray-800">
+              {props.title}
+            </p>
           </div>
           <div className="flex items-center">
-            
             <div className="pr-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white">
               <Bin contentId={props.contentId} size="md" />
             </div>
