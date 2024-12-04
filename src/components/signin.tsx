@@ -74,7 +74,7 @@ export const SignIn = () => {
           />
           <button
             onClick={handleToggle}
-            className="absolute right-4 top-1/2 transform translate-y-1 translate-x-6"
+            className="absolute right-4 top-1/2 transform translate-y-1  translate-x-9 sm:translate-x-6"
           >
             {type === "password" ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
