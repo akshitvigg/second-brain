@@ -115,7 +115,7 @@ export const LandingPage = () => {
             className="w-8 md:w-[50px] dark:brightness-125"
           />
         </div>
-        <div className="flex justify-center -translate-y-32">
+        <div className="flex justify-center sm:-translate-y-32 -translate-y-28 ">
           <img
             src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Blue%20Heart.png"
             alt="Blue Heart"
