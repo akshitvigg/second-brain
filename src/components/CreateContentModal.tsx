@@ -4,6 +4,7 @@ import { Button } from "./button";
 import axios from "axios";
 import { Loader } from "./loader";
 import { X, PlusCircle } from "lucide-react";
+import { toast } from "react-toastify";
 
 enum ContentType {
   Youtube = "youtube",
@@ -90,10 +91,12 @@ export const CreateContentModal = ({ open, onClose }: any) => {
 
       if (titleRef.current) titleRef.current.value = "";
       if (linkRef.current) linkRef.current.value = "";
+      toast.success("Content added successfully");
       setErrors({});
     } catch (error) {
       console.error("Error adding content:", error);
-      alert("There was an error adding the content. Please try again.");
+      // alert("There was an error adding the content. Please try again.");
+      toast.warning("There was an error adding the content. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -108,41 +111,51 @@ export const CreateContentModal = ({ open, onClose }: any) => {
               onClick={onClose}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 rounded-full p-1 hover:bg-gray-100"
             >
-              <X size={24}  />
+              <X size={24} />
             </button>
-            
+
             <div className="flex flex-col items-center mb-6">
-              <PlusCircle size={48} className="text-blue-500 mb-4" strokeWidth={1.5} />
-              <h2 className="text-2xl font-semibold text-gray-800">Add New Content</h2>
+              <PlusCircle
+                size={48}
+                className="text-blue-500 mb-4"
+                strokeWidth={1.5}
+              />
+              <h2 className="text-2xl font-semibold text-gray-800">
+                Add New Content
+              </h2>
               <p className="text-gray-500 text-sm mt-2">Share your resource</p>
             </div>
 
             <div className="space-y-4">
               <div className=" flex justify-center">
                 <div>
-                <InputComp
-                  width="full"
-                  modal={true}
-                  reference={titleRef}
-                  placeholder="Content Title"
-                />
-                {errors.title && (
-                  <p className="text-red-500 text-xs mt-1 pl-1">{errors.title}</p>
-                )}
+                  <InputComp
+                    width="full"
+                    modal={true}
+                    reference={titleRef}
+                    placeholder="Content Title"
+                  />
+                  {errors.title && (
+                    <p className="text-red-500 text-xs mt-1 pl-1">
+                      {errors.title}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div className=" flex justify-center">
                 <div>
-                <InputComp
-                  width="full"
-                  modal={true}
-                  reference={linkRef}
-                  placeholder="Paste Link Here"
-                />
-                {errors.link && (
-                  <p className="text-red-500 text-xs mt-1 pl-1">{errors.link}</p>
-                )}
+                  <InputComp
+                    width="full"
+                    modal={true}
+                    reference={linkRef}
+                    placeholder="Paste Link Here"
+                  />
+                  {errors.link && (
+                    <p className="text-red-500 text-xs mt-1 pl-1">
+                      {errors.link}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -155,7 +168,10 @@ export const CreateContentModal = ({ open, onClose }: any) => {
                     <Button
                       key={contentType}
                       size="sm"
-                      text={contentType.charAt(0).toUpperCase() + contentType.slice(1)}
+                      text={
+                        contentType.charAt(0).toUpperCase() +
+                        contentType.slice(1)
+                      }
                       variant={type === contentType ? "primary" : "secondary"}
                       onClick={() => {
                         setType(contentType);

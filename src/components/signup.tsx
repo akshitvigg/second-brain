@@ -6,6 +6,8 @@ import { Loader } from "./loader";
 import { AuthInputcomp } from "./authinput";
 import { z } from "zod";
 import { EyeOff, Eye } from "lucide-react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inputSchema = z.object({
   username: z
@@ -59,10 +61,12 @@ export const Signup = () => {
         username,
         password,
       });
-      alert("You have successfully signed up!");
+      // alert("You have successfully signed up!");
+      toast.success("You have successfully signed up!");
       navigate("/signin");
     } catch (err) {
       setError("Signup failed. Please try again later.");
+      toast.warning("Signup failed. Please try again later.");
       console.error("Signup error:", err);
     } finally {
       setLoading(false);

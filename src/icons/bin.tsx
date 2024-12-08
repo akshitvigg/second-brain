@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Sizeprops, sizeStyles } from "./iconStyles";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Bin = (props: Sizeprops) => {
   const deleteContent = async () => {
@@ -18,10 +20,11 @@ export const Bin = (props: Sizeprops) => {
         config
       );
 
-      alert("Content deleted successfully");
-    } catch (e) {
+      toast.success("Content deleted successfully");
+    } catch (e: unknown) {
       console.log(e);
-      alert("Failed to delete content");
+
+      toast.warning("Failed to delete content");
     }
   };
   return (

@@ -6,6 +6,8 @@ import { Loader } from "./loader";
 import { AuthInputcomp } from "./authinput";
 import { EyeOff } from "lucide-react";
 import { Eye } from "lucide-react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignIn = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -30,6 +32,7 @@ export const SignIn = () => {
 
     if (!username || !password) {
       setError("Username and password are required.");
+      toast.warning("Username and password are required");
       return;
     }
 
@@ -43,10 +46,12 @@ export const SignIn = () => {
       );
       const jwt = response.data.token;
       localStorage.setItem("token", jwt);
-      alert("You have successfully signed in!");
+      // alert("You have successfully signed in!");
+      toast.success("You have successfully signed in!");
       navigate("/sidebar");
     } catch (err) {
       setError("Signin failed. Please check your credentials.");
+      toast.warning("Signin failed. Please check your credentials.");
       console.error("Signin error:", err);
     } finally {
       setLoading(false);

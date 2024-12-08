@@ -7,6 +7,7 @@ import { LogoutIcon } from "../icons/logout";
 import { NoteIcon } from "../icons/note";
 import { TwitterIcon } from "../icons/twittericon";
 import { YTIcon } from "../icons/ytIcons";
+import { toast } from "react-toastify";
 
 interface SideItemsProps {
   onItemClick: (contentType: string | null) => void;
@@ -14,9 +15,11 @@ interface SideItemsProps {
 
 export const SideItems = ({ onItemClick }: SideItemsProps) => {
   const navigate = useNavigate();
+
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/signin");
+    toast.success("You have logged out successfully");
   };
 
   return (
