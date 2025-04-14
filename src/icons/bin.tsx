@@ -16,7 +16,7 @@ export const Bin = (props: Sizeprops) => {
         },
       };
       await axios.delete(
-        "https://secondbrain-5u8x.onrender.com/api/v1/content",
+        "https://second-brain-backend-4.onrender.com/api/v1/content",
         config
       );
 

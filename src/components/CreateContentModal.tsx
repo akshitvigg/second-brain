@@ -80,7 +80,7 @@ export const CreateContentModal = ({ open, onClose }: any) => {
       setContent([...content, newContent]);
 
       await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/content",
+        "https://second-brain-backend-4.onrender.com/api/v1/content",
         newContent,
         {
           headers: {

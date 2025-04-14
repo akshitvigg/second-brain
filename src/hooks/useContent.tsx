@@ -6,7 +6,7 @@ export function useContent() {
 
   function refresh() {
     axios
-      .get("https://secondbrain-5u8x.onrender.com/api/v1/content", {
+      .get("https://second-brain-backend-4.onrender.com/api/v1/content", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },

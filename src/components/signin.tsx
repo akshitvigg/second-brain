@@ -41,7 +41,7 @@ export const SignIn = () => {
 
     try {
       const response: any = await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/signin",
+        "https://second-brain-backend-4.onrender.com/api/v1/signin",
         { username, password }
       );
       const jwt = response.data.token;

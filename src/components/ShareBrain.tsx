@@ -24,12 +24,12 @@ export const ShareBrain = ({ open, onClose }: any) => {
     setLoading(true);
     try {
       const response: any = await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/share",
+        "https://second-brain-backend-4.onrender.com/api/v1/share",
         { share: true },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
 
-      const link = `https://secondbrain-5u8x.onrender.com/api/v1/${response.data.message}`;
+      const link = `https://second-brain-backend-4.onrender.com/api/v1/${response.data.message}`;
       setShareLink(link);
       setIsLinkGenerated(true);
 
@@ -46,7 +46,7 @@ export const ShareBrain = ({ open, onClose }: any) => {
     setLoading(true);
     try {
       await axios.post(
-        "https://secondbrain-5u8x.onrender.com/api/v1/share",
+        "https://second-brain-backend-4.onrender.com/api/v1/share",
         { share: false },
         {
           headers: { Authorization: localStorage.getItem("token") },

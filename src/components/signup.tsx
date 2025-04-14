@@ -57,10 +57,13 @@ export const Signup = () => {
     setError(null);
 
     try {
-      await axios.post("https://secondbrain-5u8x.onrender.com/api/v1/signup", {
-        username,
-        password,
-      });
+      await axios.post(
+        "https://second-brain-backend-4.onrender.com/api/v1/signup",
+        {
+          username,
+          password,
+        }
+      );
       // alert("You have successfully signed up!");
       toast.success("You have successfully signed up!");
       navigate("/signin");
