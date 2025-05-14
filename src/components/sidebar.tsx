@@ -85,7 +85,10 @@ export const SideBar = ({
         />
       )}
 
-      <div className="bg-white dark:bg-[#0D1117] dark:text-gray-300 w-full">
+      <div
+        data-aos="fade-left"
+        className="bg-white dark:bg-[#0D1117] dark:text-gray-300 w-full"
+      >
         <div className="flex flex-col sm:flex-row justify-between items-center mt-8 px-6">
           <p className="font-bold text-3xl sm:text-2xl text-gray-800 dark:text-white mb-4 sm:mb-0">
             All Notes

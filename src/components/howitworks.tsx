@@ -56,7 +56,10 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="py-16 mb-12 px-4 font-poppins bg-gray-50 dark:bg-[#0D1117] border border-gray-200 dark:border-neutral-800 rounded-md shadow-lg mr-5 ml-5 dark:mr-0 dark:ml-0 transition-colors duration-300 dark:rounded-none dark:mb-0">
+    <div
+      data-aos="fade-up"
+      className="py-16 mb-12 px-4 font-poppins bg-gray-50 dark:bg-[#0D1117] border border-gray-200 dark:border-neutral-800 rounded-md shadow-lg mr-5 ml-5 dark:mr-0 dark:ml-0 transition-colors duration-300 dark:rounded-none dark:mb-0"
+    >
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-semibold text-center text-gray-900 dark:text-neutral-100 mb-4">
           How It Works

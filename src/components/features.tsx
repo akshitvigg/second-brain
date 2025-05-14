@@ -33,7 +33,10 @@ const Features = () => {
   ];
 
   return (
-    <div className="py-12 px-4 font-poppins bg-gray-50 dark:bg-[#0D1117] transition-colors duration-300">
+    <div
+      data-aos="fade-up"
+      className="py-12 px-4 font-poppins bg-gray-50 dark:bg-[#0D1117] transition-colors duration-300"
+    >
       <h2 className="text-4xl font-semibold text-center mb-12 text-gray-900 dark:text-neutral-100">
         Features
       </h2>

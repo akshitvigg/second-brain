@@ -123,7 +123,7 @@ export const LandingPage = () => {
           />
         </div>
 
-        <div className="px-4 md:px-0">
+        <div data-aos="fade-up" className="px-4 md:px-0">
           <h1 className="text-center text-4xl md:text-[80px] font-bold leading-tight dark:text-neutral-100">
             Organize and Share Your
             <br />
