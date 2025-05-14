@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Signup } from "./components/signup";
@@ -13,10 +13,19 @@ import HowItWorks from "./components/howitworks";
 import { Footer } from "./components/footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [sharemodalOpen, setshareModalOpen] = useState(false);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 800,
+      once: true,
+    });
+  });
 
   const Homecontent = () => {
     const featuresRef = useRef(null);
