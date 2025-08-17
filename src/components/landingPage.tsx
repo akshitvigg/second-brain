@@ -43,9 +43,11 @@ export const LandingPage = () => {
               <Moon className="text-gray-600" size={20} />
             )}
           </button>
-          <button className="pr-6 text-gray-500 dark:text-neutral-300 hover:text-gray-800 dark:hover:text-white transition-colors">
-            Home
-          </button>
+          <Link to={"/"}>
+            <button className="pr-6 text-gray-500 dark:text-neutral-300 hover:text-gray-800 dark:hover:text-white transition-colors">
+              Home
+            </button>
+          </Link>
           <ScrollLink
             to="features"
             smooth={true}
